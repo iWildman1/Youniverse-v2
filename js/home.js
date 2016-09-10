@@ -24,6 +24,7 @@ var navigationState = false;
 $('.nav-toggle').click(function() {
   if (!navigationState) {
     $('.navigation-main').css('display', 'block');
+    $('.nav-toggle').addClass('nav-open');
 
     setTimeout(function() {
       $('.navigation-main').removeClass('navigation-closed');
@@ -32,6 +33,7 @@ $('.nav-toggle').click(function() {
     navigationState = true;
   } else {
     $('.navigation-main').addClass('navigation-closed');
+    $('.nav-toggle').removeClass('nav-open');
     navigationState = false;
     setTimeout(function() {
       $('.navigation-main').css('display', 'none');
@@ -50,7 +52,7 @@ $(window).scroll(function() {
   scrollPos = $(this).scrollTop();
   bodyOffset = $('.main-body').offset().top;
 
-  if (scrollPos > (bodyOffset - 80)) {
+  if (scrollPos > (bodyOffset - 85)) {
     passedMarker = true;
   } else {
     passedMarker = false;
@@ -66,3 +68,18 @@ $(window).scroll(function() {
     navFixed = false;
   }
 })
+
+// Handle Smooth scroll
+
+$(document).ready(function () {
+    $('a[href*="#"]').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var target = $(this).attr('href');
+        $(target).velocity('scroll', {
+            duration: 1000,
+            offset: -80,
+            easing: 'easeInOutQuint'
+        });
+    });
+});
