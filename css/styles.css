@@ -130,20 +130,31 @@ section {
 .navigation-bar {
   height: 80px;
   background-color: transparent;
+  z-index: 7;
+}
+
+.navigation-bar.navigation-fixed {
+  position: fixed;
+  background-color: blue;
+  z-index: 100;
 }
 
 .navigation-bar .col-sm-12 {
   line-height: 80px;
+  z-index: 7;
 }
 
 .navigation-bar img {
   width: 150px;
+  z-index: 7;
 }
 
 .navigation-bar .nav-toggle {
   width: 40px;
   height: 50px;
   margin-top: 25px;
+  z-index: 7;
+  cursor: pointer;
 }
 
 .navigation-bar .nav-toggle-bar {
@@ -152,6 +163,58 @@ section {
   width: 100%;
   height: 1px;
   margin-bottom: 12px;
+  z-index: 7;
+}
+
+.navigation-main {
+  background-color: rgba(67, 67, 67, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.navigation-main .navigation-list {
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navigation-main .navigation-list li {
+  position: relative;
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.navigation-main .navigation-list li::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-bottom: 1px solid white;
+  bottom: 0px;
+  left: calc(50% - 5px);
+  padding-bottom: 20px;
+}
+
+.navigation-main .navigation-list li:last-child::before{
+  border-bottom: none;
+}
+
+.navigation-closed {
+  opacity: 0;
+}
+
+.navigation-open {
+  overflow: hidden;
 }
 
 .header-wrapper {
